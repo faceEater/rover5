@@ -1,0 +1,35 @@
+Rover 5 TODO
+    
+    Component:                                              Status                                Time to 
+                                                                                                  completion(min)
+-----------------------------------------------------------------------------------------------------------------
+    Hardware:                                               In progress                                 
+        Build motor drivers                                 Done                                        0
+        Build dc-dc                                         Done                                        0
+        Build dividers                                      In progress                                 30
+        Build power switching subsystem                     In progress                                 90
+            Main switch                                     Done                                        0
+            Soft  power-off?                                Not started                                 ??
+            Fuses and protection                            Still in design phase                       60
+            Rpi switch                                      Not started                                 30
+        TEST IT                                             Subsystems built so far test good           30
+        Mount boards                                        Not started                                 60
+        
+
+    Software:                                               Idea Phase
+        Protection code:                                    Not started                                 
+            Rpi wtchdog                                     Not started                                 15
+            Motor stall detector                            Not started                                 30
+            UVLO                                            Not started                                 5
+        Arduino:                                            In progress                                 420
+            RXTX Stack                                      Spec written                                240
+            Arduino>Rpi comms                               Kernel compiled                             120    
+            IMU interface                                   No progress                                 30
+            Encodor monitoring                              No progress                                 30
+        Rpi:                                                                                            
+            RXTX Stack                                      No progress                                 240
+            IMU Fusion                                      No progress                                 240
+            Programming                                     No progress                                 ??
+            I2C>Bash                                        No progress                                 45
+        PC
+            Web server                                      No progres                                  120

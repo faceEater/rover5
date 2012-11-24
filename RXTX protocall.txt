@@ -1,0 +1,88 @@
+Version 1.0
+Comms: Serial, 115200
+
+Command format
+
+0xFF 0xE0 0x01 {CRC} {UID} 0xFD
+
+{Start packet} {Set mode} {Payload} {UID} {CRC} {Stop packet}
+
+
+Return format
+
+0xFF 0xE0 0x01 0xFE {CRC} 0xFD
+
+{Start packet} {Payload} {UID} {CRC} {Stop packet}
+
+
+Mode settings:
+    0xE0 = Move
+    0xE1 = Debug
+    0xE2 = Rpi shell
+    0xE3 = Rpi program
+    0xE4 = Power
+    0xE5 = I/O
+    0xE6 = Comms
+
+Commands:
+   Move mode:
+        12          345      678
+        Direction   Power   Length
+   
+       Direction:
+            00 : Forwards
+            01 : Backwards
+            10 : Left
+            11 : Right
+       Power:
+            Int determines power level, 0 off , 01 coast
+       Length:
+            Number of encoder pulses = 10^(value), 111=Until stop
+       Returns:
+            Que depth
+            NOTE: Command UID's are returned as they are executed!
+   Debug mode
+        0x00 = Dump warnings since start
+        0x01 = Reboot RPI
+        0x02 = Self Test
+           Returns: Plaintext(See note)
+                NOTE: Plaintext is formatted as Payload length(b) 0-255, payload, payload  length, payload, ...)
+
+   Rpi shell: plaintext
+        Returns: Output
+
+   Rpi program: plaintext
+        Returns: Whatever the program wants ;-)
+
+   Power
+        0x00 Rpi off
+        0x01 Rpi on
+        0x03 Powersave
+            Returns: Success/fail(bool)
+   I/O:
+        0x00 - Voltages
+            Returns: Vbatt, Vhigh
+        0x01 - IMU
+            Returns: Accel,Gyro,Megneto(plaintext comma seperated)
+        0x02 - Reserved for future GPIO command
+    Comms:
+
+        0xA?: Info
+        0xB?: Warning
+        0xC?: Error
+        0xD?: Critical
+
+        0xA1: Packet recieved
+        0xB1: Low battery
+        0xC1: Crc error
+        0xC2: Que depth exceeded
+        0xD1: UVLO Activating
+        0xD2: Motor overcurrent
+        0xD3: Rpi FALURE
+          
+        0xFE: Que Depth
+            Returns: Motor que depth, command que depth(plaintext comma seperated) 
+        0xFF: Heartbeat
+            Returns: 0xFF
+            
+

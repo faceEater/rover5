@@ -1,0 +1,26 @@
+#ifndef Interface_h
+#define Interface_h
+
+#include "Arduino.h"
+
+class Motors //Interfaces with motor drivers
+{
+  public:
+    Motors (int pin_a, int pin_b, int pin_c, int pin_d); //Attach dual connorMotorDrives to these pins
+    void drive(unsigned char direction);
+  private:
+    int _pins[4];
+};
+class Encoders //Interfaces with encoders
+{
+};
+class Xbee //Decodes and encodes messages for wireless transmission
+{
+};
+class Rpi //Comunicates with the raspberry pi
+{
+};
+class System //Handles power management, protection, etc. Includes calibration/configuration constants
+{
+};
+#endif
