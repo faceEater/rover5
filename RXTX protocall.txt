@@ -3,7 +3,7 @@ Comms: Serial, 115200
 
 Command format
 
-0xFF 0xE0 0x01 {CRC} {UID} 0xFD
+0xFF 0xE0 0x01 {UID} {CRC} 0xFD
 
 {Start packet} {Set mode} {Payload} {UID} {CRC} {Stop packet}
 
